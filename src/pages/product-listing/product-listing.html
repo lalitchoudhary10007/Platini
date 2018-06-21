@@ -1,0 +1,115 @@
+<!--
+  Generated template for the ProductListingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<shared-view></shared-view>
+
+<ion-content>
+
+  <div class="listing">
+
+
+    <!-- sidebar /.. -->
+
+
+
+
+
+    <div class="listing-top">
+      <div class="as-list">
+        <ul class="breadcrums">
+          <li *ngFor="let heder of ScreenHeaders">
+            <a href="javascript:void(0);">{{heder.header_title}}</a>
+            <span>&gt;</span>
+          </li>
+          <!-- <li>
+            <a href="javascript:void(0);">men</a>
+            <span>&gt;</span>
+          </li>
+          <li>
+            <a href="javascript:void(0);">tops</a>
+            <span>&gt;</span>
+          </li>
+          <li>
+            <a href="javascript:void(0);">search</a>
+            <span>&gt;</span>
+          </li> -->
+        </ul>
+        <!-- <div class="right-logo"><img src="assets/imgs/mini-logo.png" alt="mini"></div> -->
+        <div *ngIf="hideMe" class="filter">
+          <a href="#">
+            <img src="assets/imgs/filter.png" alt="flter" />
+          </a>
+          <ul class="as-hvr">
+            <li *ngFor="let cat of ThirdLevelCategories" (click)="ashvr">
+              <a href="#" (click)="onFilter(cat.id)">{{cat.name}}</a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="showing">{{"Showing "+ totalData + " Items"}}</div>
+      </div>
+    </div>
+    <div class="listing-bottom">
+      <div class="prd-cntr">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 *ngFor="let product of AllProducts">
+
+              <ion-card>
+                <ion-card-content>
+                  <div (click)="OpenProductDetails(product.style)">
+                    <img src="{{product.img}}" onError="this.src='assets/imgs/no_image.jpg';" style="height:256px; width:156px; margin:auto; margin-top:15px"
+                    />
+                  </div>
+                  <div class="prd-content" >{{product.style}}</div>
+                  <div class="prd-bestprice">{{product.Discount === '' ? '' : "$"+appUtils.twoDecimals(product.Discount)}}</div>
+                  <div class="prd-exprice">{{"$"+appUtils.twoDecimals(product.price)}}</div>
+                  <div id="sort-date" class="prd-content" style="margin-top: 0;">{{catType === 2 ? "Delivery: "+ appUtils.GetFeatureDateFormat(product.futureDelivery.split(" ")[0]):''}}</div>
+                </ion-card-content>
+
+              </ion-card>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</ion-content>
+
+
+
+
+
+<!-- <div class="prd-item" *ngFor="let product of AllProducts">
+ 
+  <div class="prd-img">
+    <img src={{product.img}} onError="this.src='assets/imgs/no_image.jpg';" alt="Product" />
+  </div>
+ <div class="prd-content">{{product.style}}</div>
+  <div class="prd-bestprice">{{product.Discount === '' ? '' : "$"+product.Discount}}</div>
+  <div class="prd-exprice">{{"$"+product.price}}</div>
+
+</div>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+</ion-infinite-scroll> -->
