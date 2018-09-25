@@ -69,10 +69,8 @@ export class ProductListingPage {
 
   ionViewDidLoad() {
 
-   console.log('ionViewDidLoad ProductListingPage');
-   
-   //this.GetParentAndChildHeaders(this.navParams.get("Type"));
-
+    console.log("View Did Load" , " Product Listing  Page");
+  
     if (this.navParams.get("Type") == 1) {
       this.hideMe = false;
       this.catType = 1;
