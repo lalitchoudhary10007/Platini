@@ -1,0 +1,1070 @@
+<!--
+  Generated template for the CheckoutPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<shared-view></shared-view>
+<ion-content>
+  <div class="container">
+    <div class="fix">
+      <div class="ord-num-cntr">
+        <ul>
+          <li>
+            <b>order no:</b>local-123</li>
+          <li>
+            <b>status order:</b>draft</li>
+        </ul>
+      </div>
+      <div class="bussiness-main">
+        <div class="business-cntr left">
+          <div class="business-item">
+            <b>sold to</b>
+            <a href="#">Edit</a>
+          </div>
+          <div class="business-item">Business Name</div>
+          <div class="business-item">Last name, First Name</div>
+          <div class="business-item">Street Address</div>
+          <div class="business-item">City</div>
+          <div class="business-item">
+            <ul class="state-pin">
+              <li>State</li>
+              <li>Zip</li>
+            </ul>
+          </div>
+          <div class="business-item">Country</div>
+        </div>
+        <div class="business-cntr left">
+          <div class="business-item">
+            <b>sold to</b>
+            <a href="#">Edit</a>
+          </div>
+          <div class="business-item">Business Name</div>
+          <div class="business-item">Last name, First Name</div>
+          <div class="business-item">Street Address</div>
+          <div class="business-item">City</div>
+          <div class="business-item">
+            <ul class="state-pin">
+              <li>State</li>
+              <li>Zip</li>
+            </ul>
+          </div>
+          <div class="business-item">Country</div>
+        </div>
+      </div>
+      <div class="email-phon">
+        <div class="emai">email@email.com</div>
+        <div class="phon">999-999-9999</div>
+      </div>
+      <div class="cart-selectbox">
+        <ul>
+          <li>
+            <label>customer</label>
+            <select>
+              <option>select customer</option>
+            </select>
+          </li>
+          <li>
+            <a href="javascript:void(0);" (click)="editcustoers1()">add new</a>
+          </li>
+          <li>
+            <label>discount[%]</label>
+            <input type="text" value="2.0" />
+          </li>
+
+          <li>
+            <select class="selectbox-fullwidth">
+              <option>Select term</option>
+            </select>
+          </li>
+          <li>
+            <select class="selectbox-fullwidth">
+              <option>Ship via</option>
+            </select>
+          </li>
+          <li>
+            <select class="selectbox-fullwidth">
+              <option>Tag</option>
+            </select>
+          </li>
+          <li>
+            <label>notes</label>
+            <input type="text" value="add notes" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="list-title">items
+      <a>add style #
+        <font>add qr</font>
+      </a>
+    </div>
+    <div class="maincart-list">
+      <div class="cart-list" *ngFor="let details of cart_cloth_details; let clothIndex = index;">
+        <div class="cart-list-left">
+          <div class="cart-img">
+            <img src={{details.img_path}} onError="this.src='assets/imgs/no_image.jpg';" alt="Product Image" /> </div>
+        </div>
+        <div class="cart-list-middle">
+          <div class="style">
+            <div class="style-left">style</div>
+            <div class="style-right">{{details.style}}</div>
+          </div>
+          <!-- <div class="quantity">
+            <ul class="header">
+                            <li class="quantity-top">quantity</li>
+                            <li>#</li>
+                            <li>pcs</li>
+                        </ul>
+            <table>
+              <tr>
+                <th class="quantity-top">quantity</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>#</th>
+                <th>pcs</th>
+              </tr>
+              <tr>
+                <td>prepack a</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>2</td>
+                <td>44</td>
+              </tr>
+              <tr>
+                <td>prepack b</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>1</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>free size</td>
+                <td>12</td>
+                <td>12</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div> -->
+          <div class="size">
+            <div class="size-top">size summary</div>
+            <div class="size-bottom">
+              <div class="left-edit">
+                <a href="#" (click)="showSize()">edit</a>
+              </div>
+              <div class="dived-sizechart" *ngFor="let fits of details.Fits; let fitsIndex = index;">
+
+              <div class="grand">{{fits.fitId.fitId === 0 ? "No Fits" : fits.fitId.name}}</div>
+
+                <!-- Only OPEN Sizes Heading  -->
+                <div class="row row-heading">
+                  <div class="cell non-border">
+                    <div class="grand"></div>
+                  </div>
+                  <div class="cell top-cell" *ngFor="let sizes of fits.OpenScales[0].Allsizes">{{sizes.nameofSize}}</div>
+                </div>
+                <!-- Only OPEN Sizes Heading END -->
+
+                <!-- Sizes QUANTITY OPEN -->
+                <div class="row retail-cnt" *ngFor="let scales of fits.OpenScales; let k = index;">
+                  <div class="cell non-border">
+
+                    <div class="grand oneline">{{scales.InSeam === "" ? 'Open' : ""+scales.InSeam}}</div>
+                  </div>
+                  <div class="cell" *ngFor="let sizes of scales.Allsizes; let j = index;">
+                    <div *ngIf="sizes.sizeDetails.quantity == '0'; else templateName">
+                      <input class="inp-close" type="number" placeholder="X" value="&" disabled="disable">
+                    </div>
+
+                    <ng-template #templateName>
+                      <form>
+                        <input type="number" [(ngModel)]="sizes.cartQty" value={{sizes.cartQty}} 
+                          [ngModelOptions]="{standalone: true}" 
+                          (input)="change($event.target.value , sizes.sizeDetails.quantity , j , i , sizes, 1 , clothIndex , fitsIndex)"
+                          (keydown.enter)="EnterPressed($event.target.value , sizes.sizeDetails.quantity , j, i)" 
+                          >
+                      </form>
+                    </ng-template>
+
+                  </div>
+                </div>
+                <!-- Sizes QUANTITY OPEN -->
+
+  <!-- Only GROUP Sizes Heading  -->
+     <div class="row row-heading">
+        <div class="cell non-border">
+          <div class="grand"></div>
+        </div>
+        <div class="cell top-cell" *ngFor="let sizes of fits.GroupScales[0].Allsizes">{{sizes.nameofSize}}</div>
+        <!-- <div class="cell top-cell">&nbsp;</div> -->
+        <div class="cell top-cell">qty</div>
+
+      </div>
+      <!-- Only GROUP Sizes Heading END -->
+
+      <div class="row break-row" *ngFor="let scales of fits.GroupScales; let i = index;">
+          <div class="cell non-border">
+            <div class="grand">{{scales.InSeam === "" ? "Scale "+scales.scale.name : "Scale "+scales.InSeam}}</div>
+            <div class="break" (click)="BreakPacket(clothIndex , fitsIndex , i , scales)">break</div>
+
+          </div>
+
+          <div class="cell" *ngFor="let sizes of scales.Allsizes">
+            <input class="inp-close" type="number" placeholder="X" value={{sizes.sizeDetails.quantity}} disabled="disable">
+          </div>
+
+
+          <div class="cell quty">
+            <input type="number" [(ngModel)]="scales.groupQty" value={{scales.groupQty}} [ngModelOptions]="{standalone: true}" 
+            (input)="change($event.target.value , scales.scale.invQty, j , i , scales , 2 , clothIndex, fitsIndex)"
+              (keydown.enter)="EnterPressed($event.target.value , scales.scale.invQty , j, i)">
+          </div>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart-list-right">
+          <div class="qty-rgt">
+            <div class="hed">quantity</div>
+            <div class="bottm">{{details.qty}}</div>
+          </div>
+          <div class="qty-price">
+            <div class="hed">price</div>
+            <div class="bottm">{{"$"+appUtils.twoDecimals(details.per_price)}}</div>
+          </div>
+          <div class="qty-amt">
+            <div class="hed">amount</div>
+            <div class="bottm">{{"$"+appUtils.twoDecimals(details.total_pr)}}</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="cart-list">
+        <div class="cart-list-left">
+          <div class="cart-img">
+            <img src="assets/imgs/CMS3246_1.jpg" alt="Product Image" /> </div>
+        </div>
+        <div class="cart-list-middle">
+          <div class="style">
+            <div class="style-left">style</div>
+            <div class="style-right">xcvdf35f43ds5345</div>
+          </div>
+          <div class="quantity">
+            <table>
+              <tr>
+                <th class="quantity-top">quantity</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>#</th>
+                <th>pcs</th>
+              </tr>
+              <tr>
+                <td>prepack a</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>2</td>
+                <td>44</td>
+              </tr>
+              <tr>
+                <td>prepack b</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>1</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>free size</td>
+                <td>12</td>
+                <td>12</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+          <div class="size">
+            <div class="size-top">size summary</div>
+            <div class="size-bottom">
+              <div class="left-edit">
+                <a href="#" (click)="showSize()">edit</a>
+              </div>
+              <div class="dived-sizechart">
+                <div class="row">
+                  <div class="cell">&nbsp;</div>
+                  <div class="cell">4X S</div>
+                  <div class="cell">3X S</div>
+                  <div class="cell">2X S</div>
+                  <div class="cell">XS</div>
+                  <div class="cell">S</div>
+                  <div class="cell">M</div>
+                  <div class="cell">L</div>
+                  <div class="cell">L</div>
+                  <div class="cell">XL</div>
+                  <div class="cell">XXL</div>
+                  <div class="cell">3XL</div>
+                  <div class="cell">4XL</div>
+                  <div class="cell">&nbsp;</div>
+                </div>
+                <div class="row">
+                  <div class="cell">30</div>
+                  <div class="cell bg-gray golden bold">2</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray golden bold">5</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell bg-gray">&nbsp;</div>
+                  <div class="cell">&nbsp;</div>
+                </div>
+                <div class="row">
+                  <div class="cell">32</div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell bg-gray"></div>
+                  <div class="cell"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart-list-right">
+          <div class="qty-rgt">
+            <div class="hed">quantity</div>
+            <div class="bottm">76</div>
+          </div>
+          <div class="qty-price">
+            <div class="hed">price</div>
+            <div class="bottm">$76.00</div>
+          </div>
+          <div class="qty-amt">
+            <div class="hed">amount</div>
+            <div class="bottm">$1,576.00</div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="last-prc">
+      <ul>
+        <li>
+          <span>{{qty}}</span>
+          <span>quantity</span>
+        </li>
+        <li>
+          <span>{{"$"+appUtils.twoDecimals(amt)}}</span>
+          <span>Order Value</span>
+        </li>
+        <li>
+          <span>$1,972</span>
+          <span>Final Amount</span>
+        </li>
+        <li>
+          <span>2.0%</span>
+          <span>Discount</span>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-btns">
+      <ul>
+        <li>
+          <a href="javascript:void(0);" (click)="cartSearchShow()">save</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">submit</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">delete</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">share</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- size chart ediatable -->
+  <div class="pop-size" id="pop-size" style="display: none;">
+    <div class="check-mhead">edit quantity</div>
+    <div class="check-shead">FSJ2418FSJ2418FSJ2418</div>
+    <button class="pop-close" id="pop-close" (click)="hidepop()">X</button>
+    <div class="dived-sizechart">
+
+      <div class="row">
+
+        <div class="cell">&nbsp;</div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4X S">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3X S">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2X S">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="XS">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="S">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="M">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="L">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="L">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="XL">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="XXL">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3XL">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4XL">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">free sizes</div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="30">
+        </div>
+
+        <div class="cell bg-gray golden bold">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray golden bold">
+          <input disabled="disable" placeholder="" type="text" value="5">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">free sizes</div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="32">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">
+
+          <div class="pre">pre pack A</div>
+          <div class="golden">break pack</div>
+
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="30">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell bg-gray golden bold">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">
+
+          <div class="pre">pre pack A</div>
+          <div class="golden">break pack</div>
+
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="32">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="4">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">
+
+          <div class="pre">pre pack A</div>
+          <div class="golden">break pack</div>
+
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="30">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="0">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="0">
+        </div>
+
+        <div class="cell bg-gray golden bold">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell">
+
+          <div class="pre">pre pack A</div>
+          <div class="golden">break pack</div>
+
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="32">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="0">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="2">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="3">
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="0"> </div>
+
+        <div class="cell bg-gray">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="cell non-border">
+
+          <div class="grand">Grand</div>
+          <div class="total">Total</div>
+
+        </div>
+
+        <div class="cell">
+          <input disabled="disable" placeholder="" type="text" value="">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="6">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="6">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="7">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="9">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="15">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="7">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="7">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="9">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="15">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="7">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="1">
+        </div>
+
+        <div class="cell bold">
+          <input disabled="disable" placeholder="" type="text" value="51">
+        </div>
+
+      </div>
+
+
+    </div>
+    <a href="#" class="updt-btn">update</a>
+  </div>
+  <!-- sizechart editable popup ../ -->
+
+  <div class="editcustoers" id="editcustoers" style="display: none;">
+    <div class="pop-inner">
+      <div class="ec-heading">add/edit customers</div>
+      <span class="pop-close" (click)="closeEditcustmers1()">x</span>
+      <ul class="edt-radio">
+        <li>
+          <label>
+            <input type="radio" />retail</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" />wholesale</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" />inactive</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" />active</label>
+        </li>
+
+      </ul>
+      <!-- Tab links -->
+      <div class="tab">
+        <button class="tablinks" (click)="openCity(event, 'London')">general</button>
+        <button class="tablinks" (click)="openCity(event, 'Paris')">address</button>
+        <button class="tablinks" (click)="openCity(event, 'Tokyo')">other</button>
+      </div>
+
+      <!-- Tab content -->
+      <div id="London" class="tabcontent" style="display: block;">
+        <div class="tab-field">
+          <input type="text">
+          <label>business name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>first name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>last name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>email</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>phone</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>username</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>pincode</label>
+        </div>
+        <div class="tab-field">
+          <a href="#" class="btns">update</a>
+        </div>
+      </div>
+
+      <div id="Paris" class="tabcontent">
+        <div class="tab-field">
+          <input type="text">
+          <label>business name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>first name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>last name</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>email</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>phone</label>
+        </div>
+
+        <div class="tab-field">
+          <a href="#" class="btns">update</a>
+        </div>
+      </div>
+
+      <div id="Tokyo" class="tabcontent">
+
+        <div class="tab-field">
+          <input type="text">
+          <label>email</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>phone</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>username</label>
+        </div>
+        <div class="tab-field">
+          <input type="text">
+          <label>pincode</label>
+        </div>
+        <div class="tab-field">
+          <a href="#" class="btns">update</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- editcustoers editable popup ../ -->
+
+
+  <!-- search popup start -->
+  <div class="editcustoers" id="crt-search" style="display: none;">
+    <div class="pop-inner">
+      <span class="pop-close" (click)="closecartSearch()">x</span>
+      <div class="seapop-head">add item to cart</div>
+      <div class="seapop-input">
+        <input type="text" />
+      </div>
+      <div class="seapop-txt">enter style#</div>
+      <div class="seapop-btn">
+        <a href="#">add to cart</a>
+      </div>
+      <div class="seapop-noresult">ing your search. please retry.</div>
+    </div>
+  </div>
+  <!-- search popup end  -->
+
+  <!-- cart section -->
+  <!-- cart section end -->
+
+</ion-content>

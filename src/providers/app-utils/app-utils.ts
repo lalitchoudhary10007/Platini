@@ -26,7 +26,7 @@ export class AppUtilsProvider {
 
   GetFeatureDateFormat(date){
     var datetime = this.datePipe.transform(date , 'd MMM y');
-    console.log("FORMATED",datetime);
+  //  console.log("FORMATED",datetime);
     return datetime ;
   }
 
@@ -46,13 +46,6 @@ export class AppUtilsProvider {
 
    }
 
-   DeleteFromHeader(){
-
-    
-
-   }
-
-
-
+  
 
 }

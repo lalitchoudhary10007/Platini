@@ -12,59 +12,66 @@
   
   
   <ion-content>
+    
    <div class="page-container background">
      <div class="progress-continer">
-       <h1>sync status</h1>
-       <div class="progress-list">
-         <div class="progress-left pro-half"><span>1.</span>App Configuration / Masters</div>
-         <div class="progress-right pro-half" >
-           <!-- <img style="width: 35px;" src="assets/imgs/loader.gif" alt="loader"> -->
-           {{statusLoading}}</div>
-       </div><!--list end-->
-       <div class="progress-list">
-        <div class="progress-left pro-half"><span>2.</span>Categories</div>
-        <div class="progress-right pro-half">{{statusLoading1}}</div>
-      </div><!--list end-->
-      <div class="progress-list">
-        <div class="progress-left pro-half"><span>3.</span>products</div>
-        <div class="progress-right pro-half">{{statusLoading2}} </div>
-      </div><!--list end-->
-      <div class="progress-list">
-        <div class="progress-left pro-half"><span>4.</span>Product Images</div>
-        <div class="progress-right pro-half">{{productImagesStatus}}
-            <!-- <round-progress [current]="60"
-            [radius]="45" [color]="'#2f5496'" 
-           [stroke]="5" [max]="max"></round-progress> -->
+        <div class="loading-as">
+          <img src="assets/imgs/loading_gif.gif" alt="loader" />
         </div>
-      </div><!--list end-->
-      <div class="progress-list">
-        <div class="progress-left pro-half"><span>5.</span>Related Products</div>
-        <div class="progress-right pro-half">
-            <!-- <round-progress [current]="80"
-            [radius]="45" [color]="'#2f5496'" 
-           [stroke]="5" [max]="max"></round-progress> -->
-        </div>
-      </div><!--list end-->
-      <div class="progress-list">
-        <div class="progress-left pro-half"><span>6.</span>Customers</div>
-        <div class="progress-right pro-half">
-            <!-- <round-progress [current]="90"
-            [radius]="45" [color]="'#2f5496'" 
-           [stroke]="5" [max]="max"></round-progress> -->
-        </div>
-      </div><!--list end-->
-      <div class="progress-list">
-        <div class="progress-left pro-half"><span>7.</span>Orders</div>
-        <div class="progress-right pro-half">
-            <!-- <round-progress [current]="100"
-            [radius]="45" [color]="'#2f5496'" 
-           [stroke]="5" [max]="max"></round-progress> -->
-        </div>
-      </div><!--list end-->
+       <h1 style="text-transform: unset">First time loading takes a while.<br /> Please do not close the app as we work to make your shopping experience smoother.</h1>
+
      </div>
      <div class="mini-logo">
-      <img src="assets/imgs/mini-logo.png" alt="">
+      <img src="assets/imgs/mini-logo-one.png" alt="">
     </div>
    </div>
   </ion-content>
   
+
+
+
+
+
+
+
+  <!-- <div class="progress-list">
+      <div class="progress-left pro-half"><span>1.</span>App Configuration / Masters</div>
+      <div class="progress-right pro-half" >
+        {{statusLoading}}</div>
+    </div>
+    <div class="progress-list">
+     <div class="progress-left pro-half"><span>2.</span>Categories</div>
+     <div class="progress-right pro-half">{{statusLoading1}}</div>
+   </div>
+   <div class="progress-list">
+     <div class="progress-left pro-half"><span>3.</span>Products</div>
+     <div class="progress-right pro-half">{{statusLoading2}} </div>
+   </div>
+   <div class="progress-list">
+     <div class="progress-left pro-half"><span>4.</span>Product Images</div>
+     <div class="progress-right pro-half">{{productImagesStatus}}
+     </div>
+   </div>
+   <div class="progress-list">
+     <div class="progress-left pro-half"><span>5.</span>Related Products</div>
+     <div class="progress-right pro-half">
+     </div>
+   </div>
+   <div class="progress-list">
+     <div class="progress-left pro-half"><span>6.</span>Customers</div>
+     <div class="progress-right pro-half">
+     </div>
+   </div>
+   <div class="progress-list">
+     <div class="progress-left pro-half"><span>7.</span>Orders</div>
+     <div class="progress-right pro-half">
+     </div>
+   </div> -->
+
+
+
+
+
+
+
+

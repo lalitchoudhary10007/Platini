@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ApiHelperProvider , SessionHelperProvider , ConfigTablesProvider } from '../../providers/providers';
 import { SyncDataPage } from '../sync-data/sync-data';
+import { HTTP } from '@ionic-native/http';
 /**
  * Generated class for the ApiloginPage page.
  *
@@ -10,7 +11,7 @@ import { SyncDataPage } from '../sync-data/sync-data';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-apilogin',
   templateUrl: 'apilogin.html',
@@ -23,7 +24,9 @@ export class ApiloginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams , private alertCtrl: AlertController,
               public ApiHelper: ApiHelperProvider,public sessionProvider: SessionHelperProvider , 
-              public configProvider: ConfigTablesProvider ) {
+              public configProvider: ConfigTablesProvider, public http: HTTP ) {
+
+                
   }
 
   ionViewDidLoad() {
@@ -68,20 +71,31 @@ export class ApiloginPage {
    }else{
     console.log("Submit Click" , this.login_data);
 
-    this.ApiHelper.RequestPostHttp(this.login_data , 'Verify').subscribe(result => {
+    this.ApiHelper.RequestPostHttp(this.login_data , 'Verify' , true).then(result => {
       //here you have the analog success function from an ajax call 
       //use the received data
-      console.log("RESPONSE" , result);
+     
       if(result.Status == false){
         this.presentBasicAlert('Error' , result.Message);
       }else{
-       // this.presentBasicAlert('Successs' , result.Message);
-        this.sessionProvider.SaveValueInSession('userid' , result.UserId);
-        this.sessionProvider.SaveValueInSession('roleid' , '1');
         this.sessionProvider.SaveValueInSession('AppUrl' , this.login_data.Url);
         this.sessionProvider.SaveValueInSession('StoreName' , 'Platini Jeans');
         this.sessionProvider.SaveValueInSession('ImportStatus' , 'Not Started');
-        
+
+        if(result.UserId == 13 || result.UserId == 2 || result.UserId == 3 || result.UserId == 9 || result.UserId == 10 || result.UserId == 11 || result.UserId == 5
+          || result.UserId == 12 || result.UserId == 9744 || result.UserId == 4 || result.UserId == 1 || result.UserId == 6 
+          || result.UserId == 7 || result.UserId == 8 || result.UserId == 10752){
+            console.log("**USER TYPE ADMIN");
+          this.sessionProvider.SaveValueInSession('userid', result.UserId);
+          this.sessionProvider.SaveValueInSession('userEmail' , this.login_data.UserName);
+          this.sessionProvider.SaveValueInSession('roleid', '1');
+         }else{
+          console.log("**USER TYPE NORMAL");
+          this.sessionProvider.SaveValueInSession('userid', result.UserId);
+          this.sessionProvider.SaveValueInSession('userEmail' , this.login_data.UserName);
+          this.sessionProvider.SaveValueInSession('roleid', '5');
+         }  
+
         this.openStatusPage();
       }
      

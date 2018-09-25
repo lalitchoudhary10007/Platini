@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SyncDataPage } from './sync-data';
+//import { SyncDataPage } from './sync-data';
 
 @NgModule({
   declarations: [
-    SyncDataPage,
+  //  SyncDataPage,
   ],
   imports: [
-    IonicPageModule.forChild(SyncDataPage),
+   // IonicPageModule.forChild(SyncDataPage),
   ],
 })
 export class SyncDataPageModule {}

@@ -18,9 +18,14 @@ import { HomePage } from '../pages/home/home';
 import { MainHomePage } from '../pages/main-home/main-home';
 import { ProductListingPage } from '../pages/product-listing/product-listing';
 import { ApiloginPage } from '../pages/apilogin/apilogin'
-import { SyncDataPage } from '../pages/sync-data/sync-data'
-
-
+import { ProductDetailsPage } from '../pages/product-details/product-details';
+import { SyncDataPage } from '../pages/sync-data/sync-data';
+import { PipesModule } from '../pipes/pipes.module' ;
+import { HTTP } from '@ionic-native/http';
+import {CartDetailsPage} from '../pages/cart-details/cart-details';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { SharedhelperProvider } from '../providers/sharedhelper/sharedhelper';
 
 @NgModule({
   declarations: [
@@ -29,12 +34,15 @@ import { SyncDataPage } from '../pages/sync-data/sync-data'
     MainHomePage,
     ProductListingPage,
     SyncDataPage,
-    ApiloginPage 
+    ApiloginPage ,
+    ProductDetailsPage,
+    CartDetailsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ComponentsModule,
+    PipesModule,
     IonicModule.forRoot(MyApp),
     RoundProgressModule,
     IonicStorageModule.forRoot(),
@@ -46,22 +54,27 @@ import { SyncDataPage } from '../pages/sync-data/sync-data'
     MainHomePage,
     ProductListingPage,
     SyncDataPage,
-    ApiloginPage 
+    ApiloginPage ,
+    ProductDetailsPage,
+    CartDetailsPage
   ],
   providers: [
     StatusBar,
     DecimalPipe,
     File,
+    BackgroundMode,
+    LocalNotifications,
     FileTransfer,
     ApiHelperProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
     DatePipe,
+    HTTP,
     SessionHelperProvider,
     ConfigTablesProvider,
     AppUtilsProvider,
-    ProductsProvider
-  
+    ProductsProvider,
+    SharedhelperProvider
   ]
 })
 export class AppModule {}

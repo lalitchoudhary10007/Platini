@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ApiloginPage } from './apilogin';
+//import { ApiloginPage } from './apilogin';
 
 @NgModule({
   declarations: [
-    ApiloginPage,
+ //   ApiloginPage,
   ],
   imports: [
-    IonicPageModule.forChild(ApiloginPage),
+  //  IonicPageModule.forChild(ApiloginPage),
   ],
 })
 export class ApiloginPageModule {}
